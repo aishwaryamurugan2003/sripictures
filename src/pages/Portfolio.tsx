@@ -5,6 +5,10 @@ import Layout from "@/components/Layout";
 import Lightbox from "@/components/Lightbox";
 import { cn } from "@/lib/utils";
 
+/* ======================
+   IMAGE IMPORTS
+====================== */
+
 // Wedding images
 import w1 from "@/assets/wedding/_23A1607.jpg";
 import w2 from "@/assets/wedding/_23A1762.jpg";
@@ -32,12 +36,10 @@ import r11 from "@/assets/reception/RED00626.jpg";
 import r12 from "@/assets/reception/RED00537.jpg";
 import r13 from "@/assets/reception/RED00606.jpg";
 
-// Birthday images
-// Birthday images (stored in birthday folder)
+// Birthday images (merged into Events)
 import b1 from "@/assets/events/album_0010.jpg";
 import b2 from "@/assets/events/album_0016.jpg";
 import b3 from "@/assets/events/album_0023.jpg";
-
 
 // Event images
 import e1 from "@/assets/events/IMG_7916.jpg";
@@ -45,7 +47,9 @@ import e2 from "@/assets/events/LIN_4771.jpg";
 import e3 from "@/assets/events/LIN_4881.jpg";
 import e4 from "@/assets/events/LIN_4901.jpg";
 
-
+/* ======================
+   CATEGORIES
+====================== */
 
 const categories = [
   { id: "all", name: "All" },
@@ -57,6 +61,9 @@ const categories = [
   { id: "business", name: "Business" },
 ];
 
+/* ======================
+   PORTFOLIO DATA
+====================== */
 
 const portfolioImages = [
   { src: w1, alt: "Wedding ritual moment", category: "weddings" },
@@ -84,18 +91,19 @@ const portfolioImages = [
   { src: r12, alt: "Traditional groom portrait", category: "reception" },
   { src: r13, alt: "Traditional groom portrait", category: "reception" },
 
-   { src: e1, alt: "Event candid moment", category: "events" },
+  { src: e1, alt: "Event candid moment", category: "events" },
   { src: e2, alt: "Stage performance", category: "events" },
   { src: e3, alt: "Outdoor event shot", category: "events" },
   { src: e4, alt: "Cultural event moment", category: "events" },
 
   { src: b1, alt: "Birthday family portrait", category: "events" },
-{ src: b2, alt: "Baby birthday close-up", category: "events" },
-{ src: b3, alt: "Birthday celebration moment", category: "events" },
-
-
-
+  { src: b2, alt: "Baby birthday close-up", category: "events" },
+  { src: b3, alt: "Birthday celebration moment", category: "events" },
 ];
+
+/* ======================
+   COMPONENT
+====================== */
 
 const Portfolio = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -106,9 +114,7 @@ const Portfolio = () => {
   const filteredImages =
     activeCategory === "all"
       ? portfolioImages
-      : portfolioImages.filter(
-          (img) => img.category === activeCategory
-        );
+      : portfolioImages.filter(img => img.category === activeCategory);
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
@@ -144,14 +150,12 @@ const Portfolio = () => {
       <section className="py-8 border-b border-border sticky top-[60px] bg-background/95 backdrop-blur-md z-30">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
+            {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() =>
                   setSearchParams(
-                    category.id === "all"
-                      ? {}
-                      : { category: category.id }
+                    category.id === "all" ? {} : { category: category.id }
                   )
                 }
                 className={cn(
@@ -175,15 +179,17 @@ const Portfolio = () => {
             {filteredImages.map((image, index) => (
               <div
                 key={index}
-                className="mb-4 overflow-hidden rounded-xl cursor-pointer group"
+                className="mb-4 break-inside-avoid overflow-hidden rounded-xl cursor-pointer group"
                 onClick={() => openLightbox(index)}
               >
-                <div className="relative">
+                <div className="relative bg-muted overflow-hidden rounded-xl">
                   <img
                     src={image.src}
                     alt={image.alt}
                     loading="lazy"
-                    className="w-full rounded-xl transition-transform duration-700 group-hover:scale-105"
+                    decoding="async"
+                    fetchPriority={index < 4 ? "high" : "low"}
+                    className="w-full rounded-xl transition-all duration-700 group-hover:scale-105 blur-sm group-hover:blur-0"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -193,11 +199,7 @@ const Portfolio = () => {
                       {image.alt}
                     </span>
                     <span className="block text-xs text-accent uppercase tracking-wider mt-1">
-                      {
-                        categories.find(
-                          (c) => c.id === image.category
-                        )?.name
-                      }
+                      {categories.find(c => c.id === image.category)?.name}
                     </span>
                   </div>
                 </div>
@@ -215,27 +217,6 @@ const Portfolio = () => {
         onClose={() => setLightboxOpen(false)}
         onNavigate={setCurrentImageIndex}
       />
-
-      {/* CTA */}
-      <section className="py-24 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Like What You See?
-          </h2>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            Let's create beautiful memories together. Get in touch to
-            discuss your photography needs.
-          </p>
-          <a
-            href="https://wa.me/918939320711?text=Hi%2C%20I%27m%20interested%20in%20your%20photography%20services"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex px-8 py-3 bg-accent text-accent-foreground rounded-md uppercase tracking-wider text-sm hover:bg-accent/90 transition"
-          >
-            Book a Session
-          </a>
-        </div>
-      </section>
     </Layout>
   );
 };

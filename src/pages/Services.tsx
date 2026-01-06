@@ -1,44 +1,56 @@
 import { Link } from 'react-router-dom';
-import { ChevronRight, Camera, Heart, Users, Briefcase, Gift, ArrowRight } from 'lucide-react';
+import { ChevronRight, Camera, Heart, Users, Briefcase, Gift, ArrowRight, BabyIcon } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
+import r4 from "@/assets/reception/_23A9908.jpg";
+import w4 from "@/assets/wedding/_23A2408.jpg";
+import e4 from "@/assets/events/RED00673.jpg";
+import e5 from "@/assets/events/DSC_2757.jpg";
+import e6 from "@/assets/events/vp.jpg";
 
 const services = [
   {
-    icon: Heart,
-    title: 'Wedding Photography',
-    description: 'Your wedding day deserves to be captured with perfection. We document every precious moment, from the nervous preparations to the joyful celebrations.',
-    features: ['Full Day Coverage', 'Candid & Traditional Shots', 'Photo Album', '4K Video Option'],
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80',
+  icon: Heart,
+  title: 'Wedding Photography',
+  description:'Your wedding day deserves to be captured with perfection. We document every precious moment, from the nervous preparations to the joyful celebrations.',
+  features: ['Full Day Coverage','Candid & Traditional Shots','Photo Album','4K Video Option'],
+  image: w4,
   },
   {
     icon: Gift,
     title: 'Pre-Wedding Shoots',
     description: 'Create romantic memories before the big day. Our pre-wedding shoots are designed to tell your love story in stunning locations.',
     features: ['Location Scouting', 'Outfit Changes', 'Creative Concepts', 'Same Day Preview'],
-    image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80',
+    image: e6,
   },
   {
     icon: Camera,
     title: 'Portrait Photography',
     description: 'Professional portraits that capture your personality and essence. Perfect for individuals, families, and professional headshots.',
     features: ['Studio & Outdoor', 'Professional Editing', 'Multiple Looks', 'Quick Turnaround'],
-    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&q=80',
+    image: r4,
   },
   {
     icon: Users,
     title: 'Event Coverage',
     description: 'From birthdays to anniversaries, we capture the energy and emotions of your special events with professional precision.',
     features: ['Full Event Coverage', 'Candid Photography', 'Group Photos', 'Online Gallery'],
-    image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80',
+    image: e4,
   },
   {
-    icon: Briefcase,
-    title: 'Business Events',
-    description: 'Professional coverage for corporate events, conferences, product launches, and team celebrations.',
-    features: ['Corporate Branding', 'Conference Coverage', 'Team Photos', 'PR Ready Images'],
-    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80',
-  },
+  icon: BabyIcon,
+  title: 'Baby Shower',
+  description:
+    'Beautifully capturing the joy, emotions, and special moments of baby shower celebrations with a warm and creative touch.',
+  features: [
+    'Candid Moments',
+    'Family & Friends Coverage',
+    'Decor & Detail Shots',
+    'High-Quality Edited Photos'
+  ],
+  image: e5, // use your imported baby shower image
+},
+
 ];
 
 const Services = () => {
