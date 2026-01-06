@@ -184,13 +184,15 @@ const Portfolio = () => {
               >
                 <div className="relative bg-muted overflow-hidden rounded-xl">
                   <img
-                    src={image.src}
-                    alt={image.alt}
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority={index < 4 ? "high" : "low"}
-                    className="w-full rounded-xl transition-all duration-700 group-hover:scale-105 blur-sm group-hover:blur-0"
-                  />
+                  src={image.src}
+                  alt={image.alt}
+                  width={1200}
+                  height={800}
+                  loading={index < 6 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={index < 4 ? "high" : "low"}
+                  className="w-full rounded-xl transition-transform duration-500 group-hover:scale-105"/>
+
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

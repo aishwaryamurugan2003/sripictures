@@ -92,10 +92,21 @@ const Services = () => {
                 <div className={`relative ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className="aspect-[4/3] rounded-lg overflow-hidden">
                     <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    />
+  src={service.image}
+  alt={service.title}
+  width={1200}
+  height={900}
+  loading={index === 0 ? "eager" : "lazy"}
+  decoding="async"
+  fetchPriority={index === 0 ? "high" : "low"}
+  className="
+    w-full h-full object-cover
+    transition-transform duration-500
+    will-change-transform
+    hover:scale-105
+  "
+/>
+
                   </div>
                   {/* Decorative element */}
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-accent/30 rounded-lg -z-10" />
